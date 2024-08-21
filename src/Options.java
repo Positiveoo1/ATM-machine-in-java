@@ -5,6 +5,8 @@ public class Options {
         Scanner choice = new Scanner(System.in);
 
         while (true) {
+            int balance = 1000;
+
             baseOptions.basicOptions();
             int choices = choice.nextInt();
             switch (choices) {
@@ -19,14 +21,36 @@ public class Options {
 
                     switch (checkingChoice) {
                         case 1:
-                            int balance = 0;
                             System.out.println("Your balance is : " + balance);
                             break;
                         case 2:
-                            int withdrawAmount = 0;
-                            System.out.println("Enter the amount you want to withdraw:");
-                            System.out.println("You withdrawed" + choice.nextInt());
+                            System.out.println("Enter the amount you want to withdraw: ");
+                            int withdrawAmount = choice.nextInt();
+
+
+                            if (balance >= withdrawAmount) {
+                                balance -= withdrawAmount;
+
+                                System.out.println("You have withdrawn successfully: " + withdrawAmount);
+                                System.out.println("New balance is: " + balance);
+
+                            } else {
+                                System.out.println("Lack of amount!");
+                            }
                             break;
+
+                        case 3:
+                            System.out.println("Enter the amount you want to deposit: ");
+                            int depositAmount = choice.nextInt();
+                            balance += depositAmount;
+                            System.out.println("You have deposited: " + depositAmount);
+                            System.out.println("New balance is: " + balance);
+                            break;
+                        case 4:
+                            System.out.println("Exiting checking account menu.");
+                            break;
+                        default:
+                            System.out.println("Invalid option. Please try again.");
                     }
             }
         }
